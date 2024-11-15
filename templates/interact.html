@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interact with Your Custom LLM</title>
+    <style>
+        body {
+            background-color: #004c4c;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 500px;
+            padding: 20px;
+            background-color: rgba(0, 76, 76, 0.9);
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 1em;
+        }
+        form {
+            margin-bottom: 1.5em;
+        }
+        input[type="file"],
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007f7f;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #009999;
+        }
+        .answer {
+            margin-top: 1em;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interact with Your Custom LLM</h1>
+
+        <!-- Form for uploading more PDFs -->
+        <form action="{{ url_for('interact') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf" required>
+            <button type="submit">Upload Another PDF</button>
+        </form>
+
+        <!-- Form for asking a question -->
+        <form action="{{ url_for('interact') }}" method="post">
+            <input type="text" name="question" placeholder="Ask a question" required>
+            <button type="submit">Ask Question</button>
+        </form>
+
+        <!-- Display the answer if it exists -->
+        {% if answer %}
+        <div class="answer">
+            <strong>Answer:</strong> {{ answer }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Custom LLM Builder</title>
+    <style>
+        /* Style for the dark teal background and centered content */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #004c4c; /* Dark teal */
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 76, 76, 0.9);
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            padding: 10px 20px;
+            background-color: #007f7f;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        label:hover {
+            background-color: #009999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p>Start building your custom LLM by uploading a PDF.</p>
+
+        <!-- Form for PDF upload -->
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf" id="pdf" required>
+            <label for="pdf">Choose PDF</label>
+            <button type="submit">Upload PDF</button>
+        </form>
+    </div>
+</body>
+</html>
