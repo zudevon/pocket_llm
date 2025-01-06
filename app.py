@@ -26,12 +26,6 @@ open_ai_key = "sk-proj-At-r7IX9C8tac-9Ez0TZRX_GuXytcpVlziqFEW1OUUFTA-Q9koX9WHDXx
 # chat_gpt_client = OpenAI(api_key=open_ai_key)
 openai.api_key = open_ai_key
 
-# Initialize embedding model
-model = SentenceTransformer('all-MiniLM-L6-v2')
-pdf_text_data = []  # To store text chunks
-embeddings = []     # To store embeddings for similarity search
-index = None        # NearestNeighbors model for searching embeddings
-
 
 # Function to extract text from PDF
 def extract_text_from_pdf(pdf_path):
