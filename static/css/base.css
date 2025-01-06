@@ -1,0 +1,46 @@
+/* style.css */
+
+/* Set text color and background globally */
+body {
+    background-color: cornflowerblue; /* Light blue background */
+    color: #333333;           /* Dark gray text */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom style for headers */
+h1, h2, h3 {
+    color: #0056b3; /* Blue text for headers */
+}
+
+/* Style for paragraphs */
+/*p {*/
+/*    color: #444444;*/
+/*    background-color: cornflowerblue; !* White background *!*/
+/*    padding: 10px;*/
+/*    border: 1px solid #cccccc;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/* Style for links */
+a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline;
+}
+
+input[type="text"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+        }

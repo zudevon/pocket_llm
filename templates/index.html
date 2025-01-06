@@ -1,34 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Question Answering</title>
-</head>
-<body>
-    <h1>Upload a PDF and Ask Questions</h1>
+{% extends "base.html" %}
+{% block content %}
+    <h1 style="text-align: center;">Upload a PDF and Ask Questions</h1>
 
     <!-- PDF Upload Form -->
-    <form action="/" method="post" enctype="multipart/form-data">
+    <form action="/" method="post" enctype="multipart/form-data" style="text-align: center;">
         <input type="file" name="pdf" required>
         <button type="submit">Upload PDF</button>
     </form>
 
     <!-- Message Display -->
     {% if message %}
-        <p>{{ message }}</p>
+        <p style="text-align: center;">{{ message }}</p>
     {% endif %}
 
     <!-- Question Form -->
-    <h2>Ask a Question</h2>
-    <form id="question-form">
-        <input type="text" name="question" placeholder="Enter your question" required>
-        <button type="submit">Ask</button>
+    <h2 style="text-align: center;">Ask a Question</h2>
+    <form id="question-form" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+        <input
+            type="text"
+            name="question"
+            placeholder="Enter your question"
+            required
+            style="width: 50%; padding: 10px; margin-bottom: 10px; text-align: center;"
+            oninput="toggleSubmitButton()"
+        >
+        <button type="submit" id="submit-button" style="display: none; padding: 10px 20px;">Ask</button>
     </form>
 
-    <p id="answer"></p>
+    <p id="answer" style="text-align: center; margin-top: 20px;"></p>
 
+    <!-- JavaScript Logic to Toggle Submit Button -->
     <script>
+        function toggleSubmitButton() {
+            const inputField = document.querySelector("input[name='question']");
+            const submitButton = document.getElementById("submit-button");
+
+            // Show the submit button only when there's text input
+            if (inputField.value.trim() !== "") {
+                submitButton.style.display = "block";
+            } else {
+                submitButton.style.display = "none";
+            }
+        }
+
         document.getElementById("question-form").onsubmit = async function (e) {
             e.preventDefault();
             const question = document.querySelector("input[name='question']").value;
@@ -38,9 +52,9 @@
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({ "question": question })
             });
+
             const data = await response.json();
             document.getElementById("answer").innerText = data.answer || "Error getting answer.";
         };
     </script>
-</body>
-</html>
+{% endblock %}
