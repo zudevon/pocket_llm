@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect, url_for, jsonify
+from flask import Flask, request, render_template, session, redirect, url_for, flash, jsonify
 import os
 import fitz  # PyMuPDF for PDF text extraction
 import numpy as np
@@ -35,8 +35,24 @@ def extract_text_from_pdf(pdf_path):
             text.append(page.get_text())
     return " ".join(text)
 
-# Route for the welcome page
-@app.route("/", methods=["GET"])
+
+# Define your 6-digit password
+PASSWORD = "691691"
+
+# Landing Page Route
+@app.route('/', methods=['GET', 'POST'])
+def landing():
+    if request.method == 'POST':
+        entered_password = request.form['password']
+        if entered_password == PASSWORD:
+            return redirect(url_for('welcome'))
+        else:
+            flash('Invalid password. Please try again.')
+            return redirect(url_for('landing'))
+    return render_template('landing.html')
+
+
+@app.route("/main", methods=["GET"])
 def welcome():
     session.clear()  # Clear session data
     return render_template("welcome.html")
