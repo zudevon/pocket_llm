@@ -1,5 +1,3 @@
-# RAG Dashboard
-
 A local, open-source Retrieval-Augmented Generation (RAG) tool. Upload PDFs, build a vector database from them, and chat with your documents — all running on your own machine with no API keys required.
 
 ---
